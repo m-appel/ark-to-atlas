@@ -86,7 +86,7 @@ Also, traceroutes that consist entirely of private IPs and/or timeouts, will be 
 The results contain an additional field `ark_metadata` that provides handy information
 if processed by a script which is aware that the results were transformed from Ark:
 
-```json
+```
 {
     'ark_metadata': {
         'mode': str([probe_data|prefix_probing]),
