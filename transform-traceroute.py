@@ -206,7 +206,17 @@ def write_output(traceroutes: list, output_file: str) -> None:
 
 def get_host_and_cycle(warts_file: str) -> Tuple[str, int]:
     file_name = os.path.basename(warts_file)
-    hostname, _, cycle, _ = file_name.split('.', maxsplit=3)
+    # Files before 2018-09-16 used a different naming scheme:
+    #   daily.l7.t<team-number>.<cycle>.<date>.<hostname>.warts.gz
+    # From 2018-09-16 onwards:
+    #   <hostname>.team-probing.<cycle>.<date>.warts.gz
+    # See also: https://publicdata.caida.org/datasets/topology/ark/ipv4/probe-data/README.txt
+    if file_name.startswith('daily'):
+        file_name_split = file_name.split('.')
+        cycle = file_name_split[3]
+        hostname = file_name_split[5]
+    else:
+        hostname, _, cycle, _ = file_name.split('.', maxsplit=3)
     cycle_id = int(cycle[1:])
     return hostname, cycle_id
 
