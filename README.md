@@ -26,6 +26,9 @@ git clone https://github.com/m-appel/ark-to-atlas.git
 pip install -r requirements.txt
 ```
 
+The transformation script relies on the Scamper `sc_warts2json` binary, so you also need
+to [install Scamper](https://www.caida.org/catalog/software/scamper/).
+
 If you plan to work with Kafka, initialize the submodule and install the dependencies as
 well.
 
