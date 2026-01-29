@@ -27,7 +27,7 @@ def main() -> None:
         datefmt='%Y-%m-%d %H:%M:%S'
     )
 
-    monitor_info = pd.read_csv(args.monitor_list)
+    monitor_info = pd.read_csv(args.monitor_list, dtype={'asn': str})
     with bz2.open(args.rtree, 'rb') as f:
         rtree = pickle.load(f)
     prefix_map = dict()
@@ -44,7 +44,7 @@ def main() -> None:
     output = list()
     used_ips = set()
     for entry in monitor_info.itertuples():
-        asn_str = str(entry.asn)
+        asn_str = entry.asn
         if asn_str not in prefix_map:
             logging.warning(f'Failed to find map entry for monitor {entry}')
             output.append((entry.name, entry.asn, NO_MONITOR_IP))
