@@ -44,7 +44,7 @@ def main() -> None:
     rows = table.find_all('tr')
     for row in rows:
         cells = row.find_all('td')
-        if len(cells) != 11:
+        if len(cells) != 12:
             logging.warning('Unexpected cell count in row. Might produce wrong output.')
             logging.warning(row)
         # Some monitors have a star in their label...
