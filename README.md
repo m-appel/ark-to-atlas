@@ -1,7 +1,7 @@
 # ark-to-atlas
 
 Scripts to convert [CAIDA Ark](https://www.caida.org/projects/ark/) traceroutes to [RIPE Atlas
-format](https://atlas.ripe.net/docs/apis/result-format/#version-5000-traceroute-v6-traceroute).
+format](https://atlas.ripe.net/docs/apis/measurement-result-format#version-5000-traceroute-v6-traceroute).
 
 To emulate RIPE Atlas' `from` field, we want to have a public IP address for every
 monitor. However, some monitors use a private IP and we only know their AS from CAIDA's
