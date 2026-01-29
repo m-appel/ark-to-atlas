@@ -261,6 +261,8 @@ def main() -> None:
         datefmt='%Y-%m-%d %H:%M:%S'
     )
 
+    logging.info(f'Started: {sys.argv}')
+
     input_file = args.input
     output_dir = args.output_dir
     if not output_dir.endswith('/'):
@@ -294,7 +296,7 @@ def main() -> None:
     fake_monitor_ips_file = args.fake_monitor_ips
     fake_monitor_ips = pd.read_csv(fake_monitor_ips_file, index_col=0)  # Map to hostname
     if hostname not in fake_monitor_ips.index:
-        logging.warning('Hostname not found in monitor prefix file.')
+        logging.warning(f'Hostname "{hostname}" not found in monitor prefix file.')
         sys.exit(1)
 
     ark_metadata['asn'] = str(fake_monitor_ips.loc[hostname].asn)
@@ -312,6 +314,8 @@ def main() -> None:
         sys.exit(1)
     os.makedirs(output_dir, exist_ok=True)
     write_output(atlas_traceroutes, output_file)
+
+    logging.info('Done.')
 
 
 if __name__ == '__main__':
